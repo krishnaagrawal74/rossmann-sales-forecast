@@ -7,15 +7,15 @@ import datetime
 # ---------- Load model + reference data ----------
 @st.cache_resource
 def load_model():
-    return joblib.load('xgb_model.pkl')
+    return joblib.load('models/xgb_model.pkl')
 
 @st.cache_data
 def load_store_summary():
-    return joblib.load('store_summary.pkl')
+    return joblib.load('models/store_summary.pkl')
 
 @st.cache_data
 def load_latest_state():
-    return pd.read_csv('latest_store_state.csv')
+    return pd.read_csv('data/latest_store_state.csv')
 
 model = load_model()
 store_summary = load_store_summary()
