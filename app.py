@@ -22,7 +22,7 @@ store_summary = load_store_summary()
 latest_state = load_latest_state()
 
 st.set_page_config(page_title="Rossmann Sales Forecaster", layout="centered")
-st.title("🏪 Rossmann Store Sales Forecaster")
+st.title("Rossmann Store Sales Forecaster")
 st.caption("Predicts daily store-level sales revenue using an XGBoost model trained on 2013–2015 historical data.")
 
 # ---------- Sidebar inputs ----------
@@ -82,7 +82,7 @@ X_input = X_input[model.get_booster().feature_names]
 if st.sidebar.button("Predict Sales"):
     prediction = model.predict(X_input)[0]
 
-    st.subheader(f"📈 Predicted Sales for Store {store_id}")
+    st.subheader(f"Predicted Sales for Store {store_id}")
     st.metric(label=f"Predicted revenue on {selected_date.strftime('%A, %d %b %Y')}", value=f"€{prediction:,.0f}")
 
     # Store cluster context
@@ -99,13 +99,13 @@ if st.sidebar.button("Predict Sales"):
             3: "Core / Average Store"
         }
 
-        st.subheader("🏷️ Store Segment")
+        st.subheader("Store Segment")
         st.write(f"**Segment:** {cluster_names.get(cluster_num, cluster_num)}")
         st.write(f"**Historical average daily sales:** €{avg_sales:,.0f}")
         st.write(f"**Typical promo lift:** €{promo_lift:,.0f}")
 
     st.caption(
-        "⚠️ Note: Lag/rolling sales features use each store's most recent known values from the "
+        "Note: Lag/rolling sales features use each store's most recent known values from the "
         "2013–2015 dataset (not live data) — in production these would be pulled from a live sales database."
     )
 else:
